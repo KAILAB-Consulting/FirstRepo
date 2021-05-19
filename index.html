@@ -41,15 +41,15 @@ var contractaddress = '0x1b537dc7f73ccc8ee87c3f24e65b3c0c87b18ce5';
 var daiContract = new ethers.Contract(contractaddress, abi, provider);
 
 const risultato = await daiContract.get();
-return risultato;
+return risultato
 }
-var prova = main();
 
-readButton.addEventListener('click', main);
+main().then(result => {
+console.log(result);
+document.getElementById("xbalance").innerHTML = "last inserted value into the blockchain is : " + result;
+})
 
-window.onload = function () {
-document.getElementById("xbalance").innerHTML = "last inserted value into the blockchain is : " + prova;
-}
+
 
 </script>
 
@@ -75,3 +75,4 @@ document.getElementById("xbalance").innerHTML = "last inserted value into the bl
 </center>
 </body>
 </html>
+
