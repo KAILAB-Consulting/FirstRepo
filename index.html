@@ -90,6 +90,7 @@ document.getElementById("xbalance").innerHTML = "last inserted value into the bl
 
 
 async function setvalue() {
+ethereum.request({ method: 'eth_requestAccounts' });
 var daiContract = new ethers.Contract(contractaddress, abi, provider);
 const daiWithSigner = await daiContract.connect(signer);
 myAddress = await signer.getAddress();
