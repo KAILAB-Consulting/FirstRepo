@@ -12,7 +12,7 @@
 
 <button class="enableEthereumButton">Enable Ethereum</button>
 
-<button class="readBlockChainButton">Read Data</button>
+
 
 <script>
 
@@ -29,15 +29,54 @@ function openMetamask() {
 ethereumButton.addEventListener('click', openMetamask); 
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-async function main() {
+const signer = provider.getSigner();
 
 var abi = [
-    'function get() view returns(string)'
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "log",
+				"type": "string"
+			}
+		],
+		"name": "log_string",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "x",
+				"type": "string"
+			}
+		],
+		"name": "set",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "get",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
 ];
 
 
-var contractaddress = '0x1b537dc7f73ccc8ee87c3f24e65b3c0c87b18ce5';
+var contractaddress = '0x8ac657b899ef1cef1e9f6be5843235592dff39c7';
+
+async function main() {
 var daiContract = new ethers.Contract(contractaddress, abi, provider);
 
 const risultato = await daiContract.get();
@@ -49,6 +88,14 @@ console.log(result);
 document.getElementById("xbalance").innerHTML = "last inserted value into the blockchain is : " + result;
 })
 
+
+async function setvalue() {
+var daiContract = new ethers.Contract(contractaddress, abi, provider);
+const daiWithSigner = await daiContract.connect(signer);
+myAddress = await signer.getAddress();
+var inputtext = document.getElementById("xvalue").value;
+myData = await daiWithSigner.set(inputtext);
+}
 
 
 </script>
@@ -75,4 +122,3 @@ document.getElementById("xbalance").innerHTML = "last inserted value into the bl
 </center>
 </body>
 </html>
-
