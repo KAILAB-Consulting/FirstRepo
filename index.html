@@ -4,15 +4,86 @@
 <title></title>
 <meta charset="utf-8" />
 </head>
+
+<style>
+p.normal {
+  font-weight: normal;
+}
+
+p.light {
+  font-weight: lighter;
+}
+
+p.thick {
+  font-weight: bold;
+}
+
+p.thicker {
+  font-weight: 900;
+}
+
+hr {
+    height: 4px;
+    color: #C00000;
+    background-color: #C00000;
+    border: none;
+}
+
+.alert {
+    font: bold 1.2rem arial;
+    size: 4px;
+    font-weight: bold;
+    color: #254061;
+}
+
+.enableEthereumButton {
+  background-color: #C00000;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.addButton {
+  background-color: #BFBFBF;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+
+th {
+  width: 200px;
+}
+
+</style>
+
 <body>
-
-
+<center>
+<br>
+<h3><font face="Arial" size="20px" color="#254061" class="normal">INSERT AND RETRIEVE VALUE ON THE BLOCKCHAIN</font></h3>
+<br>
+<hr>
+<br>
+<button class="enableEthereumButton">Enable Ethereum</button>
+<br>
+<br>
+<br>
+</center>
 <script src="https://cdn.ethers.io/lib/ethers-5.0.umd.min.js"
         type="application/javascript"></script>
-
-<button class="enableEthereumButton">Enable Ethereum</button>
-
-
 
 <script>
 
@@ -101,27 +172,26 @@ myData = await daiWithSigner.set(inputtext);
 </script>
 
 <center>
+
 <div id="metamask"></div>
-<h3>Insert and retrieve value on the blockchain</h3>
 <br />
+<div id="xbalance" class="alert"></div>
+<br>
+<br>
 <table>
 <tr>
-<td></td>
-<td>
-<div id="xbalance"></div>
-</td>
-</tr>
-<tr>
-<td>Insert a new value :</td>
-<td>
-<input id="xvalue" type="text" />
-<input id="Button1" type="button" onclick="setvalue()" value="Add to Blockchain" />
-	<p>
-        <a href="https://rinkeby.etherscan.io/address/0x8ac657b899ef1cef1e9f6be5843235592dff39c7" target="_blank">Take a look at your transaction into the Etherscan </a>
-        </p>
-</td>
+<th><font face="Arial" size="4px" color="#254061" class="thick">Insert a new value :</font></th>
+<th><input id="xvalue" type="text" size="25"/></th>
+<th><input id="Button1" type="button" class="addButton" onclick="setvalue()" value="Add to Blockchain" /></th>
 </tr>
 </table>
 </center>
+<br>
+<center>	
+<br>
+<a href="https://rinkeby.etherscan.io/address/0x8ac657b899ef1cef1e9f6be5843235592dff39c7" target="_blank"><font face="Arial" size="4px" color="#C00000" class="thicker">Take a look at your transaction into the Etherscan</font></a>
+
+</center>
+
 </body>
 </html>
